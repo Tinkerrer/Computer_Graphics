@@ -1,0 +1,30 @@
+<html>
+<body>
+	<canvas id="lesson01" width="1000" height="1000"/>
+	<!--Весь скрипт с отрисовской, так оставляются комменты в html-->
+	<script type="text/javascript">
+		canvas = document.getElementById("lesson01");
+		//получаем контекст объекта canvas
+		context = canvas.getContext("2d");
+
+		context.fillRect(10,20,3,3);
+		context.fillStyle='#FF0000';
+		context.fillRect(10, 30, 10, 10);
+		for(var i = 1; i<10; ++i){
+			context.fillRect(i,i,1,1);
+		}
+		//1 аргумент - коллбек, n - интервал
+		//setInterval(draw, 5);
+
+		//Описываем функцию
+		var position = 0;
+		function draw() {
+			context.fillStyle='#FFFFFF';
+			context.fillRect(position, position, 3, 3);
+			++position;
+			context.fillStyle='#000000';
+			context.fillRect(position, position, 3, 3);
+		}
+	</script> 
+</body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+<body>
+	<canvas id="lesson01" width="1000" height="1000"/>
+	<!--Весь скрипт с отрисовской, так оставляются комменты в html-->
+	<script type="text/javascript">
+		canvas = document.getElementById("lesson01");
+		//получаем контекст объекта canvas
+		context = canvas.getContext("2d");
+
+		//Домашняя работа - нарисовать окружность
+		setInterval(draw_circle, 1);
+
+		var cyrcle_drawer_position = 0;
+		function draw_circle(){
+			context.fillStyle='#FFFF00';
+			context.fillRect(500 + 300 * Math.cos(cyrcle_drawer_position * Math.PI / 180), 500 + 300 * Math.sin(cyrcle_drawer_position * Math.PI / 180), 10, 10);
+			cyrcle_drawer_position = cyrcle_drawer_position + 0.2 ;
+		}
+	</script> 
+</body>
+</html>

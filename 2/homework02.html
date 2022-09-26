@@ -1,0 +1,29 @@
+<HTML>
+		<BODY>
+			<canvas id='lesson02' width='400' height='400' style='background: #AAAAAA'/>
+			<script>
+			//Домашнее задание - дублирование первого дз, 
+			//но уже методом "накладывания на холст"
+			let canvas = document.getElementById('lesson02');
+			let ctx = canvas.getContext('2d');
+			
+			for(var x = 0; x<400; x+=20){
+				for(var y = 0; y<400; y+=20){
+					//Создаем холст (кубик), который будем наклеивать
+					var data = ctx.createImageData(20, 20);
+					var R = Math.floor(Math.random() * 255);
+					var G = Math.floor(Math.random() * 255);
+					var B = Math.floor(Math.random() * 255);
+					var Alpha = 255;
+					for (var i=0; i<data.data.length; i+=4) {
+						data.data[i] = R; //R
+						data.data[i+1] = G; //G
+						data.data[i+2] = B; //B
+						data.data[i+3] = Alpha; //Alpha - transparency
+					}
+					ctx.putImageData(data, x, y);
+				}
+			}	
+			</script>
+		</BODY>
+</HTML>

@@ -1,0 +1,39 @@
+<HTML>
+		<BODY>
+				<canvas id='lesson03' width='200' height='200'/>
+		<script>
+				let canvas = document.getElementById('lesson03');
+				let ctx = canvas.getContext('2d');
+
+
+				setInterval(draw_arrow, 1);
+
+				var R = 100;
+				var position = 0;
+				var x_middle = 100;
+				var y_middle = 100;
+
+				function draw_arrow(){
+					//Точки наконечника
+					//Чистим стрелку от предыдущего
+
+					//Отрисовываем стрелку
+					var x_tip = R * Math.cos(Math.PI / 180 * position) + x_middle;
+					var y_tip = R * Math.sin(Math.PI / 180 * position) + y_middle;
+					var e = 0;
+					var y = y_middle;
+
+					for(var x=x_middle; x<=x_tip; x++){
+						ctx.fillRect(x, y, 1, 1);
+						e = e + (y_tip - y_middle) * 2;
+						if(e > (x_tip - x_middle)){
+							e = e - 2 * x_middle
+							y = y + 1;
+						}
+					}
+					position += 0.2;
+				}
+				
+		</script>
+		</BODY>
+</HTML>

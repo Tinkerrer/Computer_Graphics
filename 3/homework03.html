@@ -1,6 +1,6 @@
 <HTML>
 		<BODY>
-				<canvas id='lesson03' width='200' height='200'/>
+				<canvas id='lesson03' width='1000' height='1000'/>
 		<script>
 				let canvas = document.getElementById('lesson03');
 				let ctx = canvas.getContext('2d');
@@ -8,30 +8,49 @@
 
 				setInterval(draw_arrow, 1);
 
-				var R = 100;
+				var R = 500;
 				var position = 0;
-				var x_middle = 100;
-				var y_middle = 100;
+				var x_middle = 500;
+				var y_middle = 500;
 
 				function draw_arrow(){
 					//Точки наконечника
 					//Чистим стрелку от предыдущего
 
 					//Отрисовываем стрелку
-					var x_tip = R * Math.cos(Math.PI / 180 * position) + x_middle;
-					var y_tip = R * Math.sin(Math.PI / 180 * position) + y_middle;
+					var x_tip = Math.floor(R * Math.cos(Math.PI / 180 * position) + x_middle);
+					var y_tip = Math.floor(R * Math.sin(Math.PI / 180 * position) + y_middle);
 					var e = 0;
+					//Счетчики
 					var y = y_middle;
+					var x = x_middle
 
-					for(var x=x_middle; x<=x_tip; x++){
+					var dx = x_tip - x_middle;
+					var dy = y_tip - y_middle;
+
+					//Дорисовать стрелку
+					if(Math.abs(dx) > Math.abs(dy)){
+						for(; x!=x_tip; x+=Math.sign(dx)){
 						ctx.fillRect(x, y, 1, 1);
-						e = e + (y_tip - y_middle) * 2;
-						if(e > (x_tip - x_middle)){
-							e = e - 2 * x_middle
-							y = y + 1;
+						e = e + Math.abs(y_tip - y_middle) * 2;
+						if(e > Math.abs(x_tip - x_middle)){
+							e = e - 2 * Math.abs(x_tip - x_middle);
+							y+=Math.sign(dy);
+						}
 						}
 					}
-					position += 0.2;
+					else{
+						for(; y!=y_tip; y+=Math.sign(dy)){
+						ctx.fillRect(x, y, 1, 1);
+						e = e + Math.abs(x_tip - x_middle) * 2;
+						if(e > Math.abs(y_tip - y_middle)){
+							e = e - 2 * Math.abs(y_tip - y_middle);
+							x+=Math.sign(dx);
+						}
+						}
+					}
+					
+					position += 0.05;
 				}
 				
 		</script>
